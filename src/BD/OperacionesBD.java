@@ -16,6 +16,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
 /**
  *
  * @author Arkaitz
@@ -23,6 +26,7 @@ import java.util.ArrayList;
 public class OperacionesBD {
     private static Connection conexion = Conexion.getConexion();
     private static Statement st;
+    private static Logger operacionesBDLogger = LogManager.getLogger(OperacionesBD.class);
     
     public static ArrayList consultar(int idCiudad) throws SQLException {
         ArrayList listado = new ArrayList<>();
@@ -43,6 +47,8 @@ public class OperacionesBD {
                 listado.add(persona);
             }
             rs.close();
+        }else {
+        	operacionesBDLogger.info("Sin conexion");
         }
         return listado;
     }
@@ -63,6 +69,8 @@ public class OperacionesBD {
             }else{
                 System.out.println("Se ha insertado con exito");
             }
-        }        
+        } else {
+        	operacionesBDLogger.info("Sin conexion");
+        }    
     }
 }
