@@ -28,10 +28,10 @@ public class Conexion {
     public static Connection getConexion() {
 	    if (crearConexion()) {
                 System.out.println("Conexion creada");
-                conexionLogger.info("Conexion creada");
+                conexionLogger.debug("Conexion creada");
 	    }else{
                 System.out.println("No se ha podido crear la conexion");
-                conexionLogger.warn("Conexion fallida");
+                conexionLogger.debug("Conexion fallida");
             }
 	    return conexion;
     }

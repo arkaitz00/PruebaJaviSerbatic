@@ -48,7 +48,7 @@ public class OperacionesBD {
             }
             rs.close();
         }else {
-        	operacionesBDLogger.info("Sin conexion");
+        	operacionesBDLogger.debug("Sin conexion");
         }
         return listado;
     }
@@ -70,7 +70,7 @@ public class OperacionesBD {
                 System.out.println("Se ha insertado con exito");
             }
         } else {
-        	operacionesBDLogger.info("Sin conexion");
+        	operacionesBDLogger.debug("Sin conexion");
         }    
     }
 }
