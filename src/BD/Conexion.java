@@ -10,6 +10,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
+import Main.Main;
+
 /**
  *
  * @author Arkaitz
@@ -17,14 +22,16 @@ import java.sql.SQLException;
 public class Conexion {
     static String url = "jdbc:mysql://localhost:3306/prueba_serbatic";
     static Connection conexion;
-        
+    private static Logger conexionLogger = LogManager.getLogger(Conexion.class);   
         
 	
     public static Connection getConexion() {
 	    if (crearConexion()) {
                 System.out.println("Conexion creada");
+                conexionLogger.info("Conexion creada");
 	    }else{
                 System.out.println("No se ha podido crear la conexion");
+                conexionLogger.warn("Conexion fallida");
             }
 	    return conexion;
     }
@@ -48,6 +55,7 @@ public class Conexion {
             System.out.println("La conexion a la  base de datos ha terminado");    	
     	} catch (SQLException e) {
     		System.out.println("Error al cerrar la conexion");
+    		conexionLogger.error("Error al cerrar la conexion");
         }
     }
 }
